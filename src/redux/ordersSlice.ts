@@ -1,15 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { ProductType } from '../types/Types';
 
-export interface Order {
-  Id: number;
-  Name: string;
-  Quantity: number;
-  Price: number;
-}
 
 interface OrdersState {
-  orders: Order[];
+  orders: ProductType[];
 }
 
 const initialState: OrdersState = {
@@ -20,10 +15,13 @@ export const ordersSlice = createSlice({
   name: 'orders',
   initialState,
   reducers: {
-    setOrders: (state, action: PayloadAction<Order[]>) => {
+    setOrders: (state, action: PayloadAction<ProductType[]>) => {
+
+
+      console.log('Setting orders in Redux slice:', action.payload);
       state.orders = action.payload;
     },
-    addOrder: (state, action: PayloadAction<Order>) => {
+    addOrder: (state, action: PayloadAction<ProductType>) => {
       state.orders.push(action.payload);
     },
     clearOrders: (state) => {

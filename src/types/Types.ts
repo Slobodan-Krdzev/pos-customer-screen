@@ -1,3 +1,11 @@
+export interface ProductType {
+  IdProduct: number
+  Price: number
+  Name: string
+  Quantity: number
+}
+
+
 export interface Product {
   OperationType: number
   IdCombination: null | number

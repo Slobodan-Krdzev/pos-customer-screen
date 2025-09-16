@@ -3,7 +3,7 @@ posconfig = {
     api: "http://dev.revelapps.com:9096",
     API_URL: "http://dev.revelapps.com:9096/api/",
     ASSERT_URL: "http://dev.revelapps.com:9096",
-    signalRUrl: "http://dev.revelapps.com:9096/signalr/hubs",
+    signalRUrl: "http://dev.revelapps.com:9095/signalr/hubs",
     releasealltables: "/api/v2/administration/layout/releasealltables",
     GOOGLE_MAP_API_KEY: "AIzaSyCKU9vp7iC4eHOGvFO2sWfyCHeQ21UgFLY",
     reservationURL:"https://wwc.resengo.com/",
