@@ -3,11 +3,14 @@ import { hubConnection } from "signalr-no-jquery";
 import { signalRListener } from "./listener";
 import { store } from "../redux/store";
 import type { SignalRPayloads } from "./types";
-import { setOrders } from "../redux/ordersSlice";
-import type { ProductType } from "../types/Types";
+import { clearPayload, setPayload } from "../redux/ordersSlice";
+import type { DataPayload } from "../types/Types";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export let hubProxy: any;
+
+const AppConfig = window.posconfig;
+
 
 export const initSignalR = () => {
   if (!("posconfig" in window)) {
@@ -20,7 +23,9 @@ export const initSignalR = () => {
   console.log("Initializing SignalR...");
 
   const connection = hubConnection(
-    "http://dev.revelapps.com:9095/signalr/hubs"
+    AppConfig
+      ? AppConfig.signalRUrl
+      : window.location.origin + "/signalr/hubs"
   );
 
   hubProxy = connection.createHubProxy("layout");
@@ -44,25 +49,29 @@ export const initSignalR = () => {
     }
   );
 
-  hubProxy.on("mirrorDataSignal", (data: string | ProductType[]) => {
+  hubProxy.on("mirrorDataSignal", (data: string | DataPayload) => {
 
-    let parsed: ProductType[];
+    // Handle null or "null" as reset
+    if (data === null || data === "null") {
+      store.dispatch(clearPayload());
+      return;
+    }
 
+    let parsed: DataPayload | null = null;
     if (typeof data === "string") {
       try {
         parsed = JSON.parse(data);
       } catch (err) {
-        console.error("Failed to parse mirrorDataSignal:", err);
+        console.error("Failed to parse mirrorDataSignal as DataPayload:", err);
         return;
       }
     } else {
       parsed = data;
     }
-
-    if (Array.isArray(parsed)) {
-      store.dispatch(setOrders(parsed));
+    if (parsed && typeof parsed === 'object' && parsed.ListOfProducts) {
+      store.dispatch(setPayload(parsed));
     } else {
-      console.warn("mirrorDataSignal payload is not an array:", parsed);
+      console.warn("mirrorDataSignal payload is not a valid DataPayload:", parsed);
     }
   });
 
@@ -74,7 +83,7 @@ export const initSignalR = () => {
       // Fetch data using connection.id
       if (connection?.id) {
         fetch(
-          `http://dev.revelapps.com:9095/api/v2/registerdrivethrough?connectionId=${connection.id}`
+          `${AppConfig.signalRUrl}/api/v2/registerdrivethrough?connectionId=${connection.id}`
         )
           .then((res) => {
             if (!res.ok) throw new Error("Network response was not ok");

@@ -11,7 +11,6 @@ export function signalRListener<E extends SignalREvent>(
     case "takeAwayNewOrdersSignal":
       if (Array.isArray(data) && data.length > 0) {
         console.log("takeAwayNewOrdersSignal", data);
-        // TODO: dispatch or handle new orders here
       }
       break;
 

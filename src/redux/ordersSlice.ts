@@ -1,34 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import type { ProductType } from '../types/Types';
-
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { DataPayload } from "../types/Types";
 
 interface OrdersState {
-  orders: ProductType[];
+  payload: DataPayload | null;
 }
 
 const initialState: OrdersState = {
-  orders: [],
+  payload: null,
 };
 
 export const ordersSlice = createSlice({
-  name: 'orders',
+  name: "orders",
   initialState,
   reducers: {
-    setOrders: (state, action: PayloadAction<ProductType[]>) => {
-
-
-      console.log('Setting orders in Redux slice:', action.payload);
-      state.orders = action.payload;
+    setPayload: (state, action: PayloadAction<DataPayload>) => {
+      console.log("Setting DataPayload in Redux slice:", action.payload);
+      state.payload = action.payload;
     },
-    addOrder: (state, action: PayloadAction<ProductType>) => {
-      state.orders.push(action.payload);
-    },
-    clearOrders: (state) => {
-      state.orders = [];
+    clearPayload: (state) => {
+      state.payload = null;
     },
   },
 });
 
-export const { setOrders, addOrder, clearOrders } = ordersSlice.actions;
+export const { setPayload, clearPayload } = ordersSlice.actions;
 export default ordersSlice.reducer;
