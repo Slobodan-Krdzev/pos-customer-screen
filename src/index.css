@@ -1,14 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'BlankRiver';
-  src: url('/fonts/BlankRiver.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
-
 *{
   box-sizing: border-box;
 }
@@ -23,11 +14,6 @@ h1,h2,h3, h4,p,span{
   margin: 0;
   padding: 0;
 } 
-
-.titleFont {
-  font-family: "BlankRiver", sans-serif !important;
-}
-
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
