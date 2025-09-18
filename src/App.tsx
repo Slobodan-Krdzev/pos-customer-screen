@@ -56,16 +56,13 @@ function App() {
         <div
           className={`flex flex-col items-center justify-center text-white md:w-1/2 w-full mb-4 md:mb-0 `}
         >
-          <h1
-            className=" text-5xl lg:text-7xl xl:text-[6vw] 2xl:text-[7vw] mb-2 titleFont"
-            style={{ fontFamily: "cursive" }}
-          >
-            Duiven
-          </h1>
-          <div className="text-sm lg:text-base xl:text-2xl font-light text-center tracking-tight">
-            KOREAN BBQ | SUSHI | DRIVE THRU
-          </div>
-          <div className="lg:mt-2 flex flex-col items-center">
+          <img
+            src="/splash.png"
+            alt="Splash Logo"
+            className="w-[220px] md:w-[320px] xl:w-[420px] mb-1"
+            draggable={false}
+          />
+          <div className=" flex flex-col items-center">
             <span className="text-sm lg:text-md xl:text-xl my-1 xl:my-4 tracking-tight">
               Active Order
             </span>

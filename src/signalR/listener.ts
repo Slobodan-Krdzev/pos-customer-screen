@@ -3,7 +3,7 @@ import type { AppDispatch } from "../redux/store";
 import type { SignalREvent, SignalRPayloads } from "./types";
 
 export function signalRListener<E extends SignalREvent>(
-  dispatch: AppDispatch,
+  _: AppDispatch,
   event: E,
   data: SignalRPayloads[E]
 ) {
