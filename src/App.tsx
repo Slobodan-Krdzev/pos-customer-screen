@@ -97,12 +97,12 @@ function App() {
                 Your Order
               </div>
 
-              <div className="px-6 md:px-8 py-1 mb-4 md:mb-2 overflow-scroll max-h-[310px] md:min-h-[480px] xl:min-h-[420px] md:max-h-[400px] xl:max-h-[420px] my-scroll scrollbar-hide-x">
+              <div className="px-6 md:px-8 py-1 mb-4 md:mb-4 overflow-scroll max-h-[310px] 2xl:min-h-[54.5dvh] md:max-h-[400px] xl:max-h-[420px] my-scroll scrollbar-hide-x">
                 {ordersSlice.payload?.ListOfProducts?.map((item, idx) => (
                   <div key={idx}>
-                    <div className="flex items-center justify-between text-white text-sm xl:text-xl pt-2 pb-1 xl:pt-4 xl:pb-1.5">
-                      <span className="w-6 text-center lg:text-lg">
-                        {idx + 1}
+                    <div className="flex items-center justify-between text-white text-sm xl:text-xl pt-2 pb-1 xl:pt-3 xl:pb-1.5">
+                      <span className="w-6 text-center lg:text-lg font-black">
+                        &bull;
                       </span>
                       <span className="flex-1 !ml-4 break-words text-base lg:text-lg">
                         {item.Name}
@@ -126,13 +126,13 @@ function App() {
                             key={modIdx}
                             className="flex items-center justify-between text-white text-sm xl:text-xl pl-6"
                           >
-                            <span className="flex-1 !ml-4 break-words xl:text-xl">
+                            <span className="flex-1 !ml-4 break-words xl:text-base">
                               -- {mod.Name}
                             </span>
 
-                            <div className="flex justify-end text-[#C2C2C2]">
+                            <div className="flex justify-end xl:text-base text-[#C2C2C2]">
                               <span>1x</span>
-                              <span className="text-right xl:text-xl !ml-2 ">
+                              <span className="text-right  !ml-2 ">
                                 {mod.Price.toFixed(2)}
                               </span>
                             </div>

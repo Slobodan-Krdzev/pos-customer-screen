@@ -15,7 +15,6 @@ export const ordersSlice = createSlice({
   initialState,
   reducers: {
     setPayload: (state, action: PayloadAction<DataPayload>) => {
-      console.log("Setting DataPayload in Redux slice:", action.payload);
       state.payload = action.payload;
     },
     clearPayload: (state) => {
